@@ -64,12 +64,19 @@
         <input class="form-control"/>
       </div>
     </div>
-    <button class="btn btn-success">Submit</button>
+    <router-link to="/home">
+      <button class="btn btn-success" v-on:click="confirm">Submit</button>
+    </router-link>
   </div>
 </template>
 <script>
   export default {
-    name: "Donate"
+    name: "Donate",
+    methods: {
+      confirm () {
+        alert('Payment Confirmed!')
+      }
+    }
   }
 </script>
 
