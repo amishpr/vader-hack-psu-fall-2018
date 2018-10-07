@@ -10,6 +10,7 @@
   "dependencies": {
     "bootstrap-vue": "^2.0.0-rc.11",
     "cities": "^1.1.2",
+    "city-to-coords": "^1.1.0",
     "vue": "^2.5.17",
     "vue-browser-geolocation": "^1.5.0",
     "vue-router": "^3.0.1",
