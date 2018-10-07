@@ -8,13 +8,21 @@ export default new Vuex.Store({
     accuWeatherKey: 0,
     city: '',
     stateAbbr: '',
-    stateDate: 0,
+    alarm: null,
+    startDate: 0,
     endDate: 0,
     rain: 0,
-    snow: 0,
     ice: 0,
+    snow: 0,
     windGusts: 0,
     wind: 0,
+    thunderStorm: 0,
+    volunteers: [
+      {name: 'Amish P.', contact: 'amishp@gmail.com'},
+      {name: 'Ronak P.', contact: 'ronakp@gmail.com'},
+      {name: 'Kishan P.', contact: 'kishanp@yahoo.com'},
+      {name: 'John H.', contact: 'johnh@hotmail.com'},
+    ]
   },
   mutations: {
     setAccuWeatherKey (state, key) {
@@ -28,6 +36,49 @@ export default new Vuex.Store({
       state.stateAbbr = stateAbbr
     },
     processWeatherAlarm (state, payload) {
+      state.alarm = payload
+      // Reset
+      state.rain = 0
+      state.ice = 0
+      state.snow = 0
+      state.wind = 0
+      state.windGusts = 0
+      state.thunderStorm = 0
+      state.stateDate = 0
+      state.endDate = 0
+
+      console.debug('START DATE: ', payload[0].Date)
+      state.startDate = new Date(payload[0].Date).toDateString()
+
+
+      console.debug('END DATE: ', payload[payload.length - 1].Date)
+      state.endDate = new Date(payload[payload.length - 1].Date).toDateString()
+
+      for (let i = 0; i < payload.length; i++) {
+        let AlarmType = payload[i].Alarms[0].AlarmType
+        let Value = payload[i].Alarms[0].Value.Imperial.Value
+
+        if (AlarmType === 'Rain') {
+          state.rain += Value
+        }
+        if (AlarmType === 'Ice') {
+          state.ice += Value
+        }
+        if (AlarmType === 'Snow') {
+          state.snow += Value
+        }
+        if (AlarmType === 'Wind') {
+          state.wind += Value
+        }
+        if (AlarmType === 'WindGust') {
+          state.windGusts += Value
+        }
+        if (AlarmType === 'Thunderstorm') {
+          state.thunderStorm += Value
+        }
+      }
+
+      console.error("Rain: ", state.rain)
     }
   },
   getters: {
