@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row p-1">
       <div class="col-2">
-        <label class="mr-1">City:</label>
+        <label class="mr-2">City:</label>
       </div>
       <div class="col-6">
         <label v-if="location !== null">{{city}}</label>
