@@ -33,8 +33,13 @@
       </div>
     </div>
     <!--Search-->
-    <button class="btn btn-primary" v-on:click="searchForKey()">Search</button>
-
+    <div>
+      <button class="btn btn-primary" v-on:click="searchForKey()">Search</button>
+    </div>
+    <!--Map-->
+    <div>
+      <img v-bind:src="map" class="center" width="300">
+    </div>
     <table class="table table-bordered mt-1">
       <tr>
         <th>Natural Disaster</th>
@@ -125,6 +130,7 @@
 
   import {here} from '../../APIKeys'
   import cities from 'cities'
+  import getCoords from 'city-to-coords'
 
   export default {
     name: 'home',
@@ -202,6 +208,12 @@
       },
       endDate() {
         return this.$store.state.endDate
+      },
+      map () {
+        if (this.city !== '') {
+          return 'https://image.maps.api.here.com/mia/1.6/mapview?&z=14&app_id=x7TpMUVFVl0h24dpXkDn&app_code=5ftF7hz9a3gFyLCOi8K1uA'
+              + '&ci=' + this.city + '&&&w=400'
+        }
       }
     },
     watch: {
@@ -215,6 +227,14 @@
         this.$store.dispatch("getCityKey", this.location)
         this.$store.commit("setCity", this.location.city)
         this.$store.commit("setStateAbbr", this.location.state_abbr)
+      },
+      user_City () {
+        console.error('user_City CHANGED!')
+        getCoords(this.user_City.toString()).then((coords) => {
+          console.error('COORDINATES: ', coords)
+          this.lat = coords.lat
+          this.lng = coords.lng
+        })
       }
     }
   }
@@ -223,7 +243,9 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
   .center {
-    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
   }
-
 </style>
