@@ -111,6 +111,38 @@ export default new Vuex.Store({
       })
       getWeatherAlarmsData()
 
+    },
+    authorizeCreditCard (context, card) {
+      let requestObj = {
+        "createTransactionRequest": {
+          "merchantAuthentication": {
+            "name": "6k9FG9dv",
+            "transactionKey": "9a9HG9md44a6dnHC"
+          },
+          "refId": "123456",
+          "transactionRequest": {
+            "transactionType": "authCaptureTransaction",
+            "amount": "5",
+            "payment": {
+              "creditCard": {
+                "cardNumber": card.number,
+                "expirationDate": card.date,
+                "cardCode": card.code
+              }
+            },
+            "billTo": {
+              "firstName": card.firstName,
+              "lastName": card.lastName,
+              "address": card.address,
+              "city": card.city,
+              "state": card.state,
+              "zip": card.zip,
+              "country": "USA"
+            }
+          }
+        }
+      }
+
     }
   }
 })
