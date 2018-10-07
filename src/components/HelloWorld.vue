@@ -93,6 +93,7 @@
       },
       stateAbbr () {
         return this.$store.state.stateAbbr
+
       }
     },
     watch: {
