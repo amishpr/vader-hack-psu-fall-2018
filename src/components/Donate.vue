@@ -44,11 +44,27 @@
         <input class="form-control"/>
       </div>
     </div>
-    <div class="row">
+    <div class="row p-1">
       <div class="col-2">
-        <label></label>
+        <label>City</label>
+      </div>
+      <div class="col-3">
+        <input class="form-control"/>
+      </div>
+      <div class="col-1">
+        <label>State</label>
+      </div>
+      <div class="col-2">
+        <input class="form-control"/>
+      </div>
+      <div class="col-1">
+        <label>Zip</label>
+      </div>
+      <div class="col-2">
+        <input class="form-control"/>
       </div>
     </div>
+    <button class="btn btn-success">Submit</button>
   </div>
 </template>
 <script>
