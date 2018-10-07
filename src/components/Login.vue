@@ -13,7 +13,7 @@
         <label class="mr-1">Password: </label>
       </div>
       <div class="col-6">
-        <input class="form-control"placeholder="Password"/>
+        <input type="password" class="form-control"placeholder="Password"/>
       </div>
     </div>
     <router-link to="/home">

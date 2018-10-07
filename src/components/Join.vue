@@ -11,7 +11,9 @@
         <td>{{v.contact}}</td>
       </tr>
     </table>
-    <button class="btn btn-success">Donate</button>
+    <router-link to="/donate">
+      <button class="btn btn-success">Donate</button>
+    </router-link>
   </div>
 </template>
 

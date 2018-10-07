@@ -38,7 +38,7 @@
     </div>
     <!--Map-->
     <div>
-      <img v-bind:src="map" class="center" width="300">
+      <img v-bind:src="map" class="center p-3" width="300">
     </div>
     <table class="table table-bordered mt-1">
       <tr>
@@ -48,10 +48,10 @@
         <th>Help</th>
       </tr>
       <tr>
-        <td v-if="rain >= 5">Possible Flooding in {{city}}</td>
-        <td v-if="rain >= 5">{{startDates}}</td>
-        <td v-if="rain >= 5">{{endDate}}</td>
-        <td v-if="rain >= 5">
+        <td v-if="rain >= 2">Possible Flooding in {{city}}</td>
+        <td v-if="rain >= 2">{{startDates}}</td>
+        <td v-if="rain >= 2">{{endDate}}</td>
+        <td v-if="rain >= 2">
           <button class="btn btn-success" v-if="!eventExists">Create</button>
           <router-link to="/join">
             <button class="btn btn-warning" v-if="eventExists">Join</button>
